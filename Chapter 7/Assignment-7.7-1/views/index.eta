@@ -1,15 +1,11 @@
-<h1>Chat</h1>
-<h2>Add an message</h2>
-
+<h1>This is the chat!</h1>
 <form method="POST">
-    Sender: <input type="text" name="sender" /><br/>
-    Message: <input type="text" name="message" /><br/>
-    <input type="submit" value="Submit!" />
+  <input type="text" name="sender" />
+  <input type="text" name="message" />
+  <input type="submit" value="Send a message!" />
 </form>
-
-<h2>Latest Messages</h2>
 <ul>
-    <% it.message.forEach((obj) => { %>
-        <li><%= obj.sender %>: <%= obj.message %> </li>
-    <% }) %>
+  <% it.messages.forEach((msg) => { %>
+    <li><%= msg.sender %>: <%= msg.message %></li>
+  <% }); %>
 </ul>

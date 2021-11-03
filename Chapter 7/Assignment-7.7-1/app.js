@@ -2,6 +2,8 @@ import { listenAndServe } from "https://deno.land/std@0.113.0/http/server.ts";
 import { configure, renderFile } from "https://deno.land/x/eta@v1.12.3/mod.ts";
 import * as chatService from "./services/chatService.js"
 
+let port = 7777
+
 /**配置eta文件所在的目录 */
 configure({
   views: `${Deno.cwd()}/views/`
@@ -62,5 +64,5 @@ const handleRequest = async (request) => {
   }
 };
 
-listenAndServe(":7777", handleRequest);
+listenAndServe(`:${port}`, handleRequest);
 

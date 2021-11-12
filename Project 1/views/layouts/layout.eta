@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task application!</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      h1{
+        color: Green;
+        font-size:280%;
+      }
+      h2 {
+        color: Darkblue;
+      }
+      .main{
+      }
+      .projects{
+        font-family: "Times New Roman", Times, serif;
+        font-size:120%;
+      }
+    </style>
+  </head>
+  <body>
+    <%~ it.body %>
+  </body>
+</html>

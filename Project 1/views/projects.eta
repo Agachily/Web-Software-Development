@@ -1,0 +1,20 @@
+<% layout("./layouts/layout.eta") %>
+<h1>Projects:</h1>
+
+<h2>Add a Project</h2>
+
+<form action="/projects" method="POST" class="projectCreate">
+  <b class="projects">Project Name: </b><input type="text" name="name" /> 
+  <input type="submit" value="Create Project" />
+</form>
+
+<h2>Current Projects</h2>
+<p> Should delete all issues before delete projects</p>
+<% it.projects.forEach((project) => { %>
+  <p class="projects">
+    <form action="/projects/<%= project.id %>" method="POST">
+        <b><a href="/projects/<%= project.id %>" class="projects"><%= project.name %></a></b>
+        <input type="submit" value="Delete" />
+    </form>
+  </p>
+<% }); %>

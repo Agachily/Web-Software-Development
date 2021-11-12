@@ -1,0 +1,25 @@
+GET http://localhost:7777/NonFoundTest
+
+###
+POST http://localhost:7777/projects
+Content-Type: application/x-www-form-urlencoded
+
+name=Test-2
+
+###
+GET http://localhost:7777/projects
+
+###
+POST http://localhost:7777/projects/4
+
+###
+GET http://localhost:7777/projects/5
+
+###
+POST http://localhost:7777/projects/5/issues
+Content-Type: application/x-www-form-urlencoded
+
+description=Issue3
+
+###
+POST http://localhost:7777/projects/5/issues/3

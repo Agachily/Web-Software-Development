@@ -1,0 +1,24 @@
+<% layout("./layouts/layout.eta") %>
+<h1><%= it.project.name %></h1>
+<h3><a href="/projects" class="main">Get back to main page</a></h3>
+<h2>Submmit your issue</h2>
+<form action="/projects/<%= it.project.id %>/issues" method="POST">
+  <b class="projects">Issue:</b> <input type="text" name="description" />
+  <input type="submit" value="Submmit Issue" />
+</form>
+
+<h2>Current issues</h2>
+<% if (it.issues) { %>
+  <% it.issues.forEach((issue) => { %>
+    <p>
+      <form action="/projects/<%= issue.project_id %>/issues/<%= issue.id %>" method="POST">
+        <b class="projects"><%= issue.description %></b>
+        <input type="submit" value="Resolve" />
+      </form>
+    </p>
+  <% }) %>
+<% } %>
+
+
+
+

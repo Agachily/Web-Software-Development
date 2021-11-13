@@ -34,6 +34,9 @@ const deleteProjects = async (request) => {
     const urlParts = url.pathname.split("/");
     let id = urlParts[2]
 
+    // Delete all the issues of the project
+    await issuesService.deleteIssueByProjectId(id)
+
     // Delete by id
     await projectService.deleteById(id)
 

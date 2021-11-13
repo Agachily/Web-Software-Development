@@ -16,4 +16,8 @@ const deleteIssueById = async (issue_id) => {
     await executeQuery("DELETE FROM project_issues WHERE id=($1);", issue_id)
 }
 
-export {createIssue, getIssueByProjectId, deleteIssueById}
+const deleteIssueByProjectId = async (project_id) => {
+    await executeQuery("DELETE FROM project_issues WHERE project_id=($1);", project_id)
+}
+
+export {createIssue, getIssueByProjectId, deleteIssueById, deleteIssueByProjectId}

@@ -9,7 +9,6 @@
 </form>
 
 <h2>Current Projects</h2>
-<p> Should delete all issues before delete projects</p>
 <% it.projects.forEach((project) => { %>
   <p class="projects">
     <form action="/projects/<%= project.id %>" method="POST">

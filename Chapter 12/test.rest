@@ -16,4 +16,10 @@ GET http://localhost:7777/sum/1/4
 GET http://localhost:7777?number1=8
 
 ###
-GET http://localhost:7777/
+GET http://localhost:7777/names
+
+###
+POST http://localhost:7777/names
+
+###
+GET http://localhost:7777/name/Jane/emotion/happy

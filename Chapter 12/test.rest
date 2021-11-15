@@ -1,0 +1,19 @@
+GET http://localhost:7777
+
+###
+GET http://localhost:7777/test
+
+###
+POST http://localhost:7777
+
+###
+GET http://localhost:7777/key/hello
+
+###
+GET http://localhost:7777/sum/1/4
+
+###
+GET http://localhost:7777?number1=8
+
+###
+GET http://localhost:7777/

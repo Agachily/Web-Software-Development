@@ -1,0 +1,15 @@
+GET http://localhost:7777/
+
+###
+GET http://localhost:7777/admin
+
+###
+GET http://localhost:7777/
+Cookie: session=zTXh7OtSBsNyHwt_fIZnf
+
+###
+POST http://localhost:7777/
+Content-Type: application/x-www-form-urlencoded
+Cookie: session=ChVuBvsaOIuO03pWqabjF
+
+data=big

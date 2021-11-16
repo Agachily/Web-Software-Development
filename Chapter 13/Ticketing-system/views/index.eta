@@ -1,0 +1,24 @@
+<h1>Tickets</h1>
+
+<h2>Submmit Tickets</h2>
+<form action="/tickets" method="POST">
+  Ticket content: <input type="text" name="content" /> 
+  <input type="submit" value="Add Content" />
+</form>
+
+<h2>Current Tickets</h2>
+<ul>
+<% it.tickets.forEach((ticket) => { %>
+    <%if(ticket.resolved_on){%>
+        <li>R <%= ticket.id %>: <%= ticket.content %></li>
+    <%}else{%>
+        <li>N <%= ticket.id %>: <%= ticket.content %></li>
+    <%}%>
+    <form action="/tickets/<%= ticket.id %>/resolve" method="POST">
+        <input type="submit" value="Resolve" />
+    </form>
+    <form action="/tickets/<%= ticket.id %>/delete" method="POST">
+        <input type="submit" value="Delete" />
+    </form>
+<% }); %>
+<ul>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <script src="/static/code.js" defer></script>
+  </head>
+  <body>
+    <div id="container">
+      <h1 id="title">Hello world!</h1>
+      <p>Welcome to my awesome page!</p>
+      <ul id="list">
+        <li>First item, the rest will appear in a moment..</li>
+      </ul>
+    </div>
+  </body>
+</html>

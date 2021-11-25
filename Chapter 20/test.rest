@@ -1,0 +1,7 @@
+POST http://localhost:7777/files
+Content-type:application/x-www-form-urlencoded
+
+password=43256&id=2
+
+###
+GET http://localhost:7777/

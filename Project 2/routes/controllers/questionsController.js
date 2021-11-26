@@ -1,15 +1,40 @@
 import * as questionService from "../../services/questionService.js";
+import { validasaur } from "../../deps.js";
 
-const addQuestion = async ({request, response}) => {
-    /** Get the required data */
-    const body = request.body({ type: "form" })
-    const params = await body.value
-    const title = params.get("title")
-    const questionText = params.get("question_text")
+/** Define the validation rules */
+const questionValidationRules = {
+  title: [validasaur.required, validasaur.minLength(1)],
+  questionText: [validasaur.required, validasaur.minLength(1)],
+};
 
-    await questionService.addQuestion(1, title, questionText)
+const addQuestion = async ({ request, response, render }) => {
+  /** Get the required data */
+  const body = request.body({ type: "form" });
+  const params = await body.value;
 
-    response.redirect("/questions")
-}
+  /** Construct the data to be validated */
+  const questionData = {
+    title: params.get("title"),
+    questionText: params.get("question_text"),
+  };
 
-export { addQuestion }
+  /** Validate the data */
+  const [passes, errors] = await validasaur.validate(
+    questionData,
+    questionValidationRules,
+  );
+
+  if (!passes) {
+    questionData.validationErrors = errors;
+    render("question.eta", questionData);
+  } else {
+    await questionService.addQuestion(
+      1,
+      questionData.title,
+      questionData.questionText,
+    );
+    response.redirect("/questions");
+  }
+};
+
+export { addQuestion };

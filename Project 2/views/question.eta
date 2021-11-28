@@ -29,7 +29,7 @@ Is Correct:<br/>
     <li>
     <form action="/questions/<%= it.id %>/options/<%= item.id %>/delete" method="POST">
     <%= item.option_text %> : <%= item.is_correct %>
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Delete Option" />
     </form>
     </li>
 <% }); %>

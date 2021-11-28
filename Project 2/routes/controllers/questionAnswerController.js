@@ -2,7 +2,7 @@ import { validasaur } from "../../deps.js";
 import * as questionService from "../../services/questionService.js";
 import * as questionAnswerService from "../../services/questionAnswerService.js"
 
-const questionValidationRules = {
+const answerValidationRules = {
     optionText: [validasaur.required, validasaur.minLength(1)],
 }
 
@@ -21,7 +21,7 @@ const addAnswerOptions = async ({ request, response, render, params }) => {
     /** Validate the data */
     const [passes, errors] = await validasaur.validate(
         answerOptionData,
-        questionValidationRules,
+        answerValidationRules,
     )
 
     /** Get the data of the question */

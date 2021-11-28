@@ -26,7 +26,15 @@ Text:<br/>
 <% if (it.currentUserQuestions && it.currentUserQuestions.length > 0) { %>
 <ul>
 <% it.currentUserQuestions.forEach(item => { %>
-  <li><a href="/questions/<%= item.id %>"><%= item.title %></a></li>
+  <li>
+  <% if (item.noAnswer) { %>
+    <form action="/questions/<%= item.id %>/delete" method="POST">
+    <a href="/questions/<%= item.id %>"><%= item.title %></a>
+    <input type="submit" value="Delete" />
+  <% } else { %>
+    <a href="/questions/<%= item.id %>"><%= item.title %></a>
+  <% } %>
+  </li>
 <% }); %>
 </ul>
 <% } else { %>

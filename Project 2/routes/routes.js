@@ -8,6 +8,8 @@ router
     .get("/questions", questionsController.showQuestionsPage)
     .post("/questions", questionsController.addQuestion)
     .get("/questions/:id", questionsController.showQuestionPage)
+    .post("/questions/:id/delete", questionsController.deleteQuestion)
     .post("/questions/:id/options", questionAnswerController.addAnswerOptions)
+    .post("/questions/:questionId/options/:optionId/delete", questionAnswerController.deleteAnswerOption)
 
 export { router };

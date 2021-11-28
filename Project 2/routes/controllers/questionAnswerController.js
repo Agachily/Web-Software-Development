@@ -41,4 +41,12 @@ const addAnswerOptions = async ({ request, response, render, params }) => {
     }
 }
 
-export { addAnswerOptions }
+const deleteAnswerOption = async ({ response, params }) => {
+    const questionID = params.questionId
+    const optionId = params.optionId
+    await questionAnswerService.deleteAnswerOption(questionID, optionId)
+
+    response.redirect(`/questions/${questionID}`)
+}
+
+export { addAnswerOptions, deleteAnswerOption }

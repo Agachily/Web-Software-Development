@@ -27,7 +27,7 @@ const addQuestion = async ({ request, response, render }) => {
 
   if (!passes) {
     questionData.validationErrors = errors
-    questionData.currentUserQuestions = await questionService.getCurrentUserQuestions(1)
+    questionData.currentUserQuestions = await questionService.getQuestionsByUserId(1)
     render("questions.eta", questionData);
   } else {
     await questionService.addQuestion(
@@ -52,4 +52,10 @@ const showQuestionPage = async ({ params, render }) => {
   render("question.eta", questionData)
 }
 
-export { addQuestion, showQuestionsPage, showQuestionPage};
+const deleteQuestion = async ({ params, response }) => {
+  const id = params.id
+  await questionService.deleteQuestion(id)
+  response.redirect("/questions")
+}
+
+export { addQuestion, showQuestionsPage, showQuestionPage, deleteQuestion};

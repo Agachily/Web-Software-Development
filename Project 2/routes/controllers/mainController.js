@@ -1,5 +1,5 @@
 const showMain = ({ render }) => {
-  render("question.eta");
+  render("questions.eta");
 };
 
 export { showMain };

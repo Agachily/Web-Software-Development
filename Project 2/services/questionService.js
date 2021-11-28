@@ -8,4 +8,13 @@ const addQuestion = async (userId, title, questionText) => {
   );
 };
 
-export { addQuestion }
+const getCurrentUserQuestions = async (userId) => {
+  const res = await executeQuery(
+    "SELECT * FROM questions WHERE user_id=($1) ",
+    userId,
+  )
+  
+  return res.rows
+}
+
+export { addQuestion, getCurrentUserQuestions }

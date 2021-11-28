@@ -20,3 +20,15 @@ Text:<br/>
 <textarea name="question_text"><%= it.questionText ? it.questionText : "" %></textarea><br/>
 <input type="submit" value="Add"/>
 </form>
+
+<h2>All the Current Questions</h2>
+
+<% if (it.currentUserQuestions && it.currentUserQuestions.length > 0) { %>
+<ul>
+<% it.currentUserQuestions.forEach(item => { %>
+  <li><a href="/questions/<%= item.id %>"><%= item.title %></a></li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>No Current Questions</p>
+<% } %>

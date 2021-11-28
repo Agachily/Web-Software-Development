@@ -1,11 +1,10 @@
 import { Router } from "../deps.js";
-import * as mainController from "./controllers/mainController.js";
 import * as questionsController from "./controllers/questionsController.js";
 
 const router = new Router();
 
 router
-    .get("/questions", mainController.showMain)
+    .get("/questions", questionsController.showQuestionsPage)
     .post("/questions", questionsController.addQuestion)
 
 export { router };

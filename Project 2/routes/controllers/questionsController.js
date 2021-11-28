@@ -25,8 +25,9 @@ const addQuestion = async ({ request, response, render }) => {
   );
 
   if (!passes) {
-    questionData.validationErrors = errors;
-    render("question.eta", questionData);
+    questionData.validationErrors = errors
+    questionData.currentUserQuestions = await questionService.getCurrentUserQuestions(1)
+    render("questions.eta", questionData);
   } else {
     await questionService.addQuestion(
       1,
@@ -37,4 +38,10 @@ const addQuestion = async ({ request, response, render }) => {
   }
 };
 
-export { addQuestion };
+const showQuestionsPage = async ({ render }) => {
+  render("questions.eta", {
+      currentUserQuestions: await questionService.getCurrentUserQuestions(1),
+  })
+}
+
+export { addQuestion, showQuestionsPage };

@@ -14,5 +14,7 @@ router
     .post("/questions/:questionId/options/:optionId/delete", questionAnswerController.deleteAnswerOption)
     .get("/auth/register", userController.showRegisterForm)
     .post("/auth/register", userController.addUser)
+    .get("/auth/login", userController.showLoginForm)
+    .post("/auth/login", userController.processLogin)
 
 export { router };

@@ -8,7 +8,9 @@ const questionValidationRules = {
   questionText: [validasaur.required, validasaur.minLength(1)],
 };
 
-const addQuestion = async ({ request, response, render }) => {
+const addQuestion = async ({ request, response, render, state }) => {
+  /** Get current user id */
+  const userId = (await state.session.get("user")).id
   /** Get the required data */
   const body = request.body({ type: "form" });
   const params = await body.value;
@@ -27,11 +29,11 @@ const addQuestion = async ({ request, response, render }) => {
 
   if (!passes) {
     questionData.validationErrors = errors
-    questionData.currentUserQuestions = await questionService.getQuestionsByUserId(1)
+    questionData.currentUserQuestions = await questionService.getQuestionsByUserId(userId)
     render("questions.eta", questionData);
   } else {
     await questionService.addQuestion(
-      1,
+      userId,
       questionData.title,
       questionData.questionText,
     );
@@ -39,9 +41,12 @@ const addQuestion = async ({ request, response, render }) => {
   }
 };
 
-const showQuestionsPage = async ({ render }) => {
+const showQuestionsPage = async ({ render, state }) => {
+  /** Get current user id */
+  const userId = (await state.session.get("user")).id
+
   render("questions.eta", {
-      currentUserQuestions: await questionService.getQuestionsByUserId(1),
+      currentUserQuestions: await questionService.getQuestionsByUserId(userId),
   })
 }
 

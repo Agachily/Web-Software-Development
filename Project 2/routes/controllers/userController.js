@@ -34,4 +34,37 @@ const addUser = async ({ request, response, render }) => {
     }
 }
 
-export { showRegisterForm, addUser }
+const showLoginForm = ({render}) => {
+    render("login.eta")
+}
+
+const processLogin = async ({ request, response, state, render }) => {
+    const body = request.body({ type: "form" })
+    const params = await body.value
+  
+    const userFromDatabase = await userService.findUserByEmail(
+      params.get("email"),
+    )
+
+    /** If the use can not be founded */
+    if (userFromDatabase.length != 1) {
+        render("login.eta", {error : "There is no such user, please register"})
+        return
+    }
+  
+    const user = userFromDatabase[0];
+    const passwordMatches = await bcrypt.compare(
+        params.get("password"),
+        user.password,
+    )
+  
+    if (!passwordMatches) {
+        render("login.eta", {error : "Your credentials are wrong", originEmail: user.email})
+        return
+    }
+  
+    await state.session.set("user", user)
+    response.redirect("/questions")
+};
+
+export { showRegisterForm, addUser, showLoginForm, processLogin }

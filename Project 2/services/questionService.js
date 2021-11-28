@@ -8,7 +8,7 @@ const addQuestion = async (userId, title, questionText) => {
   );
 };
 
-const getCurrentUserQuestions = async (userId) => {
+const getQuestionsByUserId = async (userId) => {
   const res = await executeQuery(
     "SELECT * FROM questions WHERE user_id=($1) ",
     userId,
@@ -17,4 +17,13 @@ const getCurrentUserQuestions = async (userId) => {
   return res.rows
 }
 
-export { addQuestion, getCurrentUserQuestions }
+const getQuestionByQuestionID = async (id) => {
+  const res = await executeQuery(
+    "SELECT * FROM questions WHERE id=($1) ",
+    id,
+  )
+  
+  return res.rows[0]
+}
+
+export { addQuestion, getQuestionsByUserId, getQuestionByQuestionID}

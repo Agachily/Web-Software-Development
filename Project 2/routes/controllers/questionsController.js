@@ -1,4 +1,5 @@
 import * as questionService from "../../services/questionService.js";
+import * as questionAnswerService from "../../services/questionAnswerService.js"
 import { validasaur } from "../../deps.js";
 
 /** Define the validation rules */
@@ -40,8 +41,15 @@ const addQuestion = async ({ request, response, render }) => {
 
 const showQuestionsPage = async ({ render }) => {
   render("questions.eta", {
-      currentUserQuestions: await questionService.getCurrentUserQuestions(1),
+      currentUserQuestions: await questionService.getQuestionsByUserId(1),
   })
 }
 
-export { addQuestion, showQuestionsPage };
+const showQuestionPage = async ({ params, render }) => {
+  const id = params.id
+  const questionData = await questionService.getQuestionByQuestionID(id)
+  questionData.details = await questionAnswerService.getAnswerByQuestionId(id)
+  render("question.eta", questionData)
+}
+
+export { addQuestion, showQuestionsPage, showQuestionPage};

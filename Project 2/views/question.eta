@@ -1,0 +1,34 @@
+<h1>Question No.<%= it.id %></h1>
+
+<h2>Title: <%= it.title %></h2>
+<p> <%= it.question_text %> </p>
+
+<% if (it.validationErrors) { %>
+<ul>
+    <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<h2>Add an Answer Option</h2>
+<form method="POST" action="/questions/<%= it.id %>/options">
+Option Text:<br/>
+<textarea name="option_text"><%= it.optionText ? it.optionText : "" %></textarea><br/>
+Is Correct:<br/>
+<input type="checkbox" name="is_correct"/><br/>
+<input type="submit" value="Add"/>
+</form>
+
+<h2>Question Details</h2>
+<% if (it.details && it.details.length > 0) { %>
+<ul>
+<% it.details.forEach(item => { %>
+  <li><%= item.option_text %> : <%= item.is_correct %></li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>No Question Details</p>
+<% } %>

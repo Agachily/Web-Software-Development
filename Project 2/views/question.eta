@@ -1,7 +1,10 @@
+<% layout("./layouts/layout.eta") %>
 <h1>Question No.<%= it.id %></h1>
 
 <h2>Title: <%= it.title %></h2>
 <p> <%= it.question_text %> </p>
+
+<h2>Add an Answer Option</h2>
 
 <% if (it.validationErrors) { %>
 <ul>
@@ -13,27 +16,22 @@
 </ul>
 <% } %>
 
-<h2>Add an Answer Option</h2>
 <form method="POST" action="/questions/<%= it.id %>/options">
 Option Text:<br/>
 <textarea name="option_text"><%= it.optionText ? it.optionText : "" %></textarea><br/>
-Is Correct:<br/>
+Is Correct:
 <input type="checkbox" name="is_correct"/><br/>
 <input type="submit" value="Add"/>
 </form>
 
 <h2>Question Details</h2>
 <% if (it.details && it.details.length > 0) { %>
-<ul>
 <% it.details.forEach(item => { %>
-    <li>
-    <form action="/questions/<%= it.id %>/options/<%= item.id %>/delete" method="POST">
-    Id: <%= item.id %> <%= item.option_text %> : <%= item.is_correct %>
+    <p><form action="/questions/<%= it.id %>/options/<%= item.id %>/delete" method="POST">
+    Id: <%= item.id %>; Content: <%= item.option_text %>; Correctness: <%= item.is_correct %>
     <input type="submit" value="Delete Option" />
-    </form>
-    </li>
+    </form></p>
 <% }); %>
-</ul>
 <% } else { %>
 <p>No Question Details. Do you want to delete the question?</p>
     <form method="POST" action="/questions/<%= it.id %>/delete">

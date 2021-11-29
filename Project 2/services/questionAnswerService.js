@@ -24,6 +24,13 @@ const deleteAnswerOption = async (questionId, optionId) => {
     )
 }
 
+const deleteAnswerByOptionId = async (optionId) => {
+    await executeQuery(
+        "DELETE FROM question_answers WHERE question_answer_option_id=($1);",
+        optionId
+    )
+}
+
 const getCorrectOption = async (questionId) => {
     const res = await executeQuery(
         "SELECT * FROM question_answer_options WHERE question_id=($1) AND is_correct=true;",
@@ -82,5 +89,6 @@ export {
     storePostAnswer,
     getUserAnswerByUserId,
     answerToQuesOfUser,
-    getFiveUser
+    getFiveUser,
+    deleteAnswerByOptionId
 }

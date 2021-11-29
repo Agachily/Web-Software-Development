@@ -2,10 +2,13 @@ import { Router } from "../deps.js";
 import * as questionsController from "./controllers/questionsController.js";
 import * as questionAnswerController from "./controllers/questionAnswerController.js";
 import * as userController from "./controllers/userController.js";
+import * as mainController from "./controllers/mainController.js";
+import * as questionApi from "./apis/questionApi.js"
 
 const router = new Router();
 
 router
+    .get("/", mainController.showMain)
     .get("/questions", questionsController.showQuestionsPage)
     .post("/questions", questionsController.addQuestion)
     .get("/questions/:id", questionsController.showQuestionPage)
@@ -22,5 +25,6 @@ router
     .get("/quiz/:id/correct", questionsController.showCorrectPage)
     .get("/quiz/:id/incorrect", questionsController.showIncorrectPage)
     .get("/statistics", questionsController.showStatistics)
+    .get("/api/questions/random", questionApi.getRandomQuestion)
 
 export { router };

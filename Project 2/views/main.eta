@@ -1,0 +1,9 @@
+<% layout("./layouts/layout.eta") %>
+<h1>Question Application</h1>
+
+<p>This is an application where you can add questions, 
+edit question and answer some quiz. 
+You can also see your statistics after logging in.</p>
+
+<p>If you haven't used the application before, 
+you can start by <a href="/auth/register">registering</a>. If you have been here before, just <a href="/auth/login">log in!</a></p>

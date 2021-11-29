@@ -6,7 +6,7 @@ const answerValidationRules = {
     optionText: [validasaur.required, validasaur.minLength(1)],
 }
 
-const addAnswerOptions = async ({ request, response, render, params }) => {
+const addAnswerOptions = async ({ request, response, render, params , state}) => {
     /** Get the required data */
     const id = params.id
     const body = request.body({ type: "form" });
@@ -27,6 +27,14 @@ const addAnswerOptions = async ({ request, response, render, params }) => {
     /** Get the data of the question */
     const questionData = await questionService.getQuestionByQuestionID(id)
 
+    /** currently authenticated user must not be able to e.g. POST 
+     * answer options to questions created by other user */
+    const userId = (await state.session.get("user")).id
+    if ( userId !== questionData.user_id){
+        response.body = "You can not post option to other's question"
+        return
+    }
+
     if (!passes) {
         /** Prepare all the data needed to render the question.eta */
         questionData.validationErrors = errors
@@ -44,6 +52,7 @@ const addAnswerOptions = async ({ request, response, render, params }) => {
 const deleteAnswerOption = async ({ response, params }) => {
     const questionID = params.questionId
     const optionId = params.optionId
+    await questionAnswerService.deleteAnswerByOptionId(optionId)
     await questionAnswerService.deleteAnswerOption(questionID, optionId)
 
     response.redirect(`/questions/${questionID}`)

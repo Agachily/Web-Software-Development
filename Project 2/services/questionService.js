@@ -15,16 +15,6 @@ const getQuestionsByUserId = async (userId) => {
     userId,
   )
 
-  /** Add the flag to every Question that whether it could be deleted */
-  for (let i = 0; i < res.rows.length; i++) {
-    const answer = await questionAnswerService.getAnswerByQuestionId(res.rows[i].id)
-    if (answer.length > 0) {
-      res.rows[i].noAnswer = false
-    } else {
-      res.rows[i].noAnswer = true
-    }
-  }
-
   return res.rows
 }
 
@@ -44,4 +34,15 @@ const deleteQuestion = async (id) => {
   )
 }
 
-export { addQuestion, getQuestionsByUserId, getQuestionByQuestionID,deleteQuestion }
+const getRandomQuestion = async () => {
+  const res = await executeQuery("SELECT * FROM questions")
+  const questionNumber = res.rows.length
+  if (questionNumber === 0) {
+    return null
+  } else {
+    const random = Math.floor(Math.random() * questionNumber)
+    return res.rows[random]
+  }
+}
+
+export { addQuestion, getQuestionsByUserId, getQuestionByQuestionID, deleteQuestion, getRandomQuestion }

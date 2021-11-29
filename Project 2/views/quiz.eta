@@ -1,0 +1,20 @@
+<h1><%= it.title %></h1>
+
+<h2>Question Text:</h2>
+<p><%= it.text %></p>
+
+<h2>Options:</h2>
+<% if (it.options && it.options.length > 0) { %>
+<ul>
+<% it.options.forEach(item => { %>
+    <li>
+    <form action="/quiz/<%= it.id %>/options/<%= item.id %>" method="POST">
+    <%= item.option_text %>
+    <input type="submit" value="Choose" />
+    </form>
+    </li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>There is no options for this question</p>
+<% } %>

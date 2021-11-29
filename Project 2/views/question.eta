@@ -28,12 +28,15 @@ Is Correct:<br/>
 <% it.details.forEach(item => { %>
     <li>
     <form action="/questions/<%= it.id %>/options/<%= item.id %>/delete" method="POST">
-    <%= item.option_text %> : <%= item.is_correct %>
+    Id: <%= item.id %> <%= item.option_text %> : <%= item.is_correct %>
     <input type="submit" value="Delete Option" />
     </form>
     </li>
 <% }); %>
 </ul>
 <% } else { %>
-<p>No Question Details</p>
+<p>No Question Details. Do you want to delete the question?</p>
+    <form method="POST" action="/questions/<%= it.id %>/delete">
+      <input type="submit" value="Delete Question"/>
+    </form>
 <% } %>

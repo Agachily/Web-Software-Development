@@ -65,6 +65,6 @@ const processLogin = async ({ request, response, state, render }) => {
   
     await state.session.set("user", user)
     response.redirect("/questions")
-};
+}
 
 export { showRegisterForm, addUser, showLoginForm, processLogin }

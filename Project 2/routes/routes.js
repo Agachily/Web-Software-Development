@@ -16,5 +16,10 @@ router
     .post("/auth/register", userController.addUser)
     .get("/auth/login", userController.showLoginForm)
     .post("/auth/login", userController.processLogin)
+    .get("/quiz", questionsController.getRandomQuestion)
+    .get("/quiz/:id", questionsController.showQuiz)
+    .post("/quiz/:id/options/:optionId", questionsController.processPostAnswer)
+    .get("/quiz/:id/correct", questionsController.showCorrectPage)
+    .get("/quiz/:id/incorrect", questionsController.showIncorrectPage)
 
 export { router };

@@ -1,0 +1,15 @@
+<h1>Incorrect!</h1>
+
+<h2>The correct option was / were :</h2>
+
+<% if (it.data && it.data.length > 0) { %>
+<ul>
+<% it.data.forEach(item => { %>
+    <li><%= item %></li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>The correct options are not specified for the question</p>
+<% } %>
+
+<p>Would you like to try <a href="/quiz">Next Question</a> ?</p>

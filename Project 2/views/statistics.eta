@@ -1,0 +1,21 @@
+<h1>Statistics</h1>
+
+<p>The number of answers the user has given: <%= it.allAnswerNumber %></p>
+
+<p>The total number of correct answer: <%= it.correctAnswer %></p>
+
+<p>The number of answers given to the questions created by yuorself: <%= it.postedAnswerNumber %></p>
+
+<h2>Top Five Users</h2>
+<% if (it.user && it.user.length > 0) { %>
+<table>
+<% it.user.forEach(item => { %>
+  <tr>
+  <td><%= item.email %></td>
+  <td><%= item.count %></td>
+  </tr>
+<% }); %>
+</table>
+<% } else { %>
+<p>The information of users is not available</p>
+<% } %>

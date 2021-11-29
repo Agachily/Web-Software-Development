@@ -21,5 +21,6 @@ router
     .post("/quiz/:id/options/:optionId", questionsController.processPostAnswer)
     .get("/quiz/:id/correct", questionsController.showCorrectPage)
     .get("/quiz/:id/incorrect", questionsController.showIncorrectPage)
+    .get("/statistics", questionsController.showStatistics)
 
 export { router };

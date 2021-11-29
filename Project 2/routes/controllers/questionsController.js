@@ -85,9 +85,10 @@ const showQuiz = async ({params, render}) => {
   render("quiz.eta", quizData)
 }
 
-const processPostAnswer = async ({params, response}) => {
+const processPostAnswer = async ({params, response, state}) => {
   const questionId = params.id
   const optionId = params.optionId
+  const userId = (await state.session.get("user")).id
 
   /** Get the id of correct option text */
   const corretOptionId = []
@@ -96,8 +97,14 @@ const processPostAnswer = async ({params, response}) => {
     corretOptionId.push(res[i].id)
   }
 
+  /** Judge whether the answer is correct */
+  const isCorrect = corretOptionId.includes(Number(optionId))
+
+  /** Store the anserwered question to database */
+  await questionAnswerService.storePostAnswer(userId, questionId, optionId, isCorrect)
+
   /** Judge whether the user post the correct answer */
-  if ( corretOptionId.includes(Number(optionId))) {
+  if (isCorrect) {
     response.redirect(`/quiz/${questionId}/correct`)
   } else {
     response.redirect(`/quiz/${questionId}/incorrect`)
@@ -121,6 +128,41 @@ const showIncorrectPage = async ({render, params}) => {
   render("incorrect.eta", correctOptions)
 }
 
+const showStatistics = async({state, render}) => {
+  const userId = (await state.session.get("user")).id
+  const res = await questionAnswerService.getUserAnswerByUserId(userId)
+
+  const statData = {
+    allAnswerNumber : 0,
+    correctAnswer : 0,
+    postedAnswerNumber : 0,
+    user : [],
+  }
+
+  /** Get total number of the questions answered by the user */
+  const allAnswerNumber = res.length
+  statData.allAnswerNumber = allAnswerNumber
+
+  /** The total number of correct answer */
+  let correctAnswer = 0
+  for (let i=0; i<allAnswerNumber; i++) {
+    if (res[i].correct === true) {
+      correctAnswer += 1
+    }
+  }
+  statData.correctAnswer = correctAnswer
+
+  /** The number of answers given to the question crated by the user  */
+  const answerData = await questionAnswerService.answerToQuesOfUser(userId)
+  statData.postedAnswerNumber = answerData.length
+
+  /** Lists five users with the most answered questions */
+  statData.user = await questionAnswerService.getFiveUser()
+
+  /** render the page */
+  render("statistics.eta", statData)
+}
+
 export { 
   addQuestion, 
   showQuestionsPage, 
@@ -131,4 +173,5 @@ export {
   processPostAnswer,
   showCorrectPage,
   showIncorrectPage,
+  showStatistics,
 };

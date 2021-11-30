@@ -1,5 +1,4 @@
 import { executeQuery } from "../database/database.js";
-import * as questionAnswerService from "./questionAnswerService.js";
 
 const addQuestion = async (userId, title, questionText) => {
   await executeQuery(

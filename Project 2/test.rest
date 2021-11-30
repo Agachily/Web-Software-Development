@@ -4,4 +4,13 @@ Content-Type: application/x-www-form-urlencode
 option_text=bcd
 
 ###
-GET http://localhost:7777/api/questions/random
+GET https://wsd-project2-quiz.herokuapp.com/api/questions/random
+
+###
+POST https://wsd-project2-quiz.herokuapp.com/api/questions/random
+Content-Type: application/json
+
+{
+    "questionId": 8,
+    "optionId": 12
+}

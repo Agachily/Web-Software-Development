@@ -26,5 +26,6 @@ router
     .get("/quiz/:id/incorrect", questionsController.showIncorrectPage)
     .get("/statistics", questionsController.showStatistics)
     .get("/api/questions/random", questionApi.getRandomQuestion)
+    .post("/api/questions/answer", questionApi.processAnswer)
 
 export { router };

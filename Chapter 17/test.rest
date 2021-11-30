@@ -1,0 +1,25 @@
+GET http://localhost:7777/
+
+###
+POST http://localhost:7777/names
+Content-Type: application/json
+
+{"name":"Dead Space"}
+
+###
+POST http://localhost:7777/games
+Content-Type: application/json
+
+{"name":"Left 4 dead"}
+
+### 
+GET http://localhost:7777/games/2/ratings
+
+###
+POST https://nameday.abalin.net/namedays
+Content-Type: application/json
+
+{"country":"fi","day":1,"month":1}
+
+###
+DELETE http://localhost:7777/games/2

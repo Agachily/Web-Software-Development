@@ -4,10 +4,10 @@ Content-Type: application/x-www-form-urlencode
 option_text=bcd
 
 ###
-GET https://wsd-project2-quiz.herokuapp.com/api/questions/random
+GET http://localhost:7777/api/questions/random
 
 ###
-POST https://wsd-project2-quiz.herokuapp.com/api/questions/random
+POST http://localhost:7777/api/questions/answer
 Content-Type: application/json
 
 {

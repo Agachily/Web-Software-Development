@@ -34,7 +34,7 @@ const viewTasks = async (request) => {
     tasks: await taskService.findAllNonCompletedTasks(),
   };
 
-  return new Response(await renderFile("index.eta", data), responseDetails);
+  return new Response(await renderFile("tasks.eta", data), responseDetails);
 };
 
 const completeTask = async (request) => {

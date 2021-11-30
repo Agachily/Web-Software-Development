@@ -1,4 +1,30 @@
 <% layout("./layouts/layout.eta") %>
+  <nav class="border fixed split-nav">
+  <div class="nav-brand">
+    <h3>Gald to Have You Here!</h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <label for="collapsible1">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <div class="bar4"></div>
+      <div class="bar5"></div>
+      <div class="bar6"></div>
+    </label>
+    <div class="collapsible-body">
+      <ul class="inline">
+        <li><a href="/">Home</a></li>
+        <li><a href="/questions">Questions</a></li>
+        <li><a href="/quiz">Quiz</a></li>
+        <li><a href="/statistics">Statistic</a></li>
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/register">Register</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <h1>Question No.<%= it.id %></h1>
 
 <h2>Title: <%= it.title %></h2>
@@ -28,7 +54,7 @@ Is Correct:
 <% if (it.details && it.details.length > 0) { %>
 <% it.details.forEach(item => { %>
     <p><form action="/questions/<%= it.id %>/options/<%= item.id %>/delete" method="POST">
-    Id: <%= item.id %>; Content: <%= item.option_text %>; Correctness: <%= item.is_correct %>
+    Content: <%= item.option_text %>; Correctness: <%= item.is_correct %>
     <input type="submit" value="Delete Option" />
     </form></p>
 <% }); %>

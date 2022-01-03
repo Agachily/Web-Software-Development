@@ -10,11 +10,7 @@ You can login the application with the credentials: `123@test.com` and `123456` 
 
 After Login:
 
-- Click the `Question` button on the navigation bar to create a new question.
-
-  <img src="https://gitee.com/agachily/aalto-image/raw/master/uPic/截屏2022-01-03 下午1.40.03.png" alt="截屏2022-01-03 下午1.40.03" style="zoom: 33%;" />
-
-   After creating the question, click the question name to create answer option for the question. 
+- Click the `Question` button on the navigation bar to create a new question. After creating the question, click the question name to create answer option for the question. 
 
   <img src="https://gitee.com/agachily/aalto-image/raw/master/uPic/截屏2022-01-03 下午1.43.23.png" alt="截屏2022-01-03 下午1.43.23" style="zoom:33%;" />
 

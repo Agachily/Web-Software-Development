@@ -4,7 +4,31 @@ The online location of the application is : https://question-application-wsd.her
 
 # Login
 
-You can login the application with the credentials: `123@test.com` and `123456`
+You can login the application with the credentials: `123@test.com` and `123456` or just register a new account
+
+# Usage
+
+After Login:
+
+- Click the `Question` button on the navigation bar to create a new question.
+
+  <img src="../../../../../Library/Application Support/typora-user-images/截屏2022-01-03 下午1.40.03.png" alt="截屏2022-01-03 下午1.40.03" style="zoom: 33%;" />
+
+   After creating the question, click the question name to create answer option for the question. 
+
+  <img src="../../../../../Library/Application Support/typora-user-images/截屏2022-01-03 下午1.43.23.png" alt="截屏2022-01-03 下午1.43.23" style="zoom:33%;" />
+
+  To delete the question, first delete all the answer options, then a delete button will be displyed to delete the question.
+
+  <img src="../../../../../Library/Application Support/typora-user-images/截屏2022-01-03 下午1.43.52.png" alt="截屏2022-01-03 下午1.43.52" style="zoom: 50%;" />
+
+- Click the `Quiz` button to get a random question to answer
+
+- Click the `Statistic` button to check the current statistics.
+
+  <img src="../../../../../Library/Application Support/typora-user-images/截屏2022-01-03 下午1.47.54.png" alt="截屏2022-01-03 下午1.47.54" style="zoom: 50%;" />
+
+- APIs. Make GET requests to the path `/api/questions/random` can get a randomly questions as an JSON document. Make POST requests to the path `/api/questions/answer` with a JSON document that contains the id of the question and the id of the answer option are processed by the server, verifying whether the response was correct or not.
 
 # Testing
 
@@ -12,7 +36,7 @@ Run the tests with the command `deno test --allow-all --unstable` in the root di
 
 # Database
 
-Configure the database in the file `database.js` under the `database` folder.
+To run the application locally, you should configure the database in the file `database.js` under the `database` folder.
 
 There should be four tables in the database:
 

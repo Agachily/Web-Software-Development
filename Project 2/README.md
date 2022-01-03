@@ -10,19 +10,23 @@ You can login the application with the credentials: `123@test.com` and `123456` 
 
 After Login:
 
-- Click the `Question` button on the navigation bar to create a new question. After creating the question, click the question name to create answer option for the question. 
+- Click the `Question` button on the navigation bar to create a new question.
 
-  <img src="https://gitee.com/agachily/aalto-image/raw/master/uPic/截屏2022-01-03 下午1.43.23.png" alt="截屏2022-01-03 下午1.43.23" style="zoom:33%;" />
+  <img src="Pictures/1.png" style="zoom: 33%;" />
+
+   After creating the question, click the question name to create answer option for the question. 
+
+  <img src="Pictures/2.png" alt="截屏2022-01-03 下午1.43.23" style="zoom:33%;" />
 
   To delete the question, first delete all the answer options, then a delete button will be displyed to delete the question.
 
-  <img src="https://gitee.com/agachily/aalto-image/raw/master/uPic/截屏2022-01-03 下午1.43.52.png" alt="截屏2022-01-03 下午1.43.52" style="zoom: 50%;" />
+  <img src="Pictures/3.png" alt="截屏2022-01-03 下午1.43.52" style="zoom: 50%;" />
 
 - Click the `Quiz` button to get a random question to answer
 
 - Click the `Statistic` button to check the current statistics.
 
-  <img src="https://gitee.com/agachily/aalto-image/raw/master/uPic/截屏2022-01-03 下午1.47.54.png" alt="截屏2022-01-03 下午1.47.54" style="zoom: 50%;" />
+  <img src="Pictures/4.png" alt="截屏2022-01-03 下午1.47.54" style="zoom: 50%;" />
 
 - APIs. Make GET requests to the path `/api/questions/random` can get a randomly questions as an JSON document. Make POST requests to the path `/api/questions/answer` with a JSON document that contains the id of the question and the id of the answer option are processed by the server, verifying whether the response was correct or not.
 
